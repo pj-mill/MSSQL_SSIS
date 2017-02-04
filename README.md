@@ -37,4 +37,5 @@ Developed with Visual Studio Community 2015
 |ExportEmployeesToExcel.dtsx|Exports Employee Table From Sql Server To Excel|
 |ImportInstallersToSqlServer.dtsx|Runs a sql command to truncate installer table prior to importing data from flat file|
 |LondonBerlinCustomers.dtsx| Uses a conditional split to export customers from london & berlin to different worksheets in an excel file|
-|AggregateCustomers|Counts the number of customer per city and outputs to an excel worksheet|
+|AggregateCustomers|Counts the number of customer per city and outputs result to an excel worksheet|
+|Sort Customers| Sorts customers by city prior to exporting them to an excel worksheet|
