@@ -27,7 +27,6 @@ Developed with Visual Studio Community 2015
 |Aggredate transformations|
 |Sampling Data|
 |Combining data using UNION ALL|
-|Synchronous & Asynchronous transformations|
 |Data conversion|
 |Conditional Split|
 
