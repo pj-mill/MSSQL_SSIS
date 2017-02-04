@@ -34,3 +34,4 @@ Developed with Visual Studio Community 2015
 |Package|Description|
 |-------|-----------|
 |ExportEmployeesToExcel.dtsx|Exports Employee Table From Sql Server To Excel|
+|ImportInstallersToSqlServer.dtsx|Runs a sql command to truncate installer table prior to importing data from flat file|
