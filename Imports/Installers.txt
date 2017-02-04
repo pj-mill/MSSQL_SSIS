@@ -1,0 +1,5 @@
+InstallerName|RegionId
+John Handcock|1
+Mary May|2
+Peter Gray|3
+Phillip Murphy|4
