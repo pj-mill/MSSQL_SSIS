@@ -2,6 +2,8 @@
 
 Developed with Visual Studio Community 2015
 
+(All samples use the northwind database)
+
 ---
 
 ###Techs
@@ -27,3 +29,8 @@ Developed with Visual Studio Community 2015
 |Combining data using UNION ALL|
 |Synchronous & Asynchronous transformations|
 |Data conversion|
+
+### Packages
+|Package|Description|
+|-------|-----------|
+|ExportEmployeesToExcel.dtsx|Exports Employee Table From Sql Server To Excel|
