@@ -18,8 +18,8 @@ Developed with Visual Studio Community 2015
 |-------|
 |Creating control tasks|
 |Creating data tasks|
-|Creating a SQL Server, flat file & Excel sources|
-|Creating a SQL Server & Excel destinations|
+|Creating SQL Server, flat file & Excel sources|
+|Creating SQL Server & Excel destinations|
 |Completing & running packages|
 |Running SQL commands|
 |Using Data Views|
