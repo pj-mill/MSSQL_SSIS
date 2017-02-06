@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C1F8572-F105-4BE6-9499-7023BB1521A2}"
 	ProjectSection(SolutionItems) = preProject
 		Exports\EmployeesExport.xls = Exports\EmployeesExport.xls
+		Imports\Installers.txt = Imports\Installers.txt
 	EndProjectSection
 EndProject
 Global
