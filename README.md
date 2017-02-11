@@ -6,6 +6,10 @@ Developed with Visual Studio Community 2015
 
 ---
 
+![Screen Shot](https://github.com/Apollo013/MSSQL_SSIS/blob/master/ScreenShot.png?raw=true "Screen shot")
+
+---
+
 ###Techs
 |Tech|
 |-------|
@@ -32,17 +36,18 @@ Developed with Visual Studio Community 2015
 |Conditional Split|
 |Debugging|
 |Lookup Transformations|
+|Caching|
 
 
 ### Packages
-|Package|Description|
-|-------|-----------|
-|ExportEmployeesToExcel.dtsx|Exports Employee Table From Sql Server To Excel|
-|ImportInstallersToSqlServer.dtsx|Runs a sql command to truncate installer table prior to importing data from flat file|
-|LondonBerlinCustomers.dtsx| Uses a conditional split to export customers from london & berlin to different worksheets in an excel file|
-|AggregateCustomers.dtsx|Counts the number of customer per city and outputs result to an excel worksheet|
-|SortCustomers.dtsx| Sorts customers by city prior to exporting them to an excel worksheet|
-|ImportExcelInstallersToSqlServer.dtsx|Demonstrates converting unicode string to non unicode strings|
-|ExpressionBuilder.dtsx| Builds a message that depends on a number of variables|
-|Debugging| Demonstrates solving runtime errors, debugging data flow flows, control flows, setting breakoints, watching variables, script tasks & row count tasks|
-|LookupTransforms| Demonstrates how to lookup related table info when importing from an excel sheet|
+|Package|Description|Features|
+|-------|-----------|--------|
+|ExportEmployeesToExcel.dtsx|Exports Employee Table From Sql Server To Excel|OLE DB Source, Excel Destination|
+|ImportInstallersToSqlServer.dtsx|Runs a sql command to truncate installer table prior to importing data from flat file|SQL Task, Flat File Source, OLE DB Destination|
+|LondonBerlinCustomers.dtsx| Uses a conditional split to export customers from london & berlin to different worksheets in an excel file|OLE DB Source, Conditional Split, Multiple Excel Destinations| 
+|AggregateCustomers.dtsx|Counts the number of customer per city and outputs result to an excel worksheet| OLE DB Source, Aggregate Task, Excel Destination| 
+|SortCustomers.dtsx| Sorts customers by city prior to exporting them to an excel worksheet|OLE DB Source, Excel Destination, Sort Task|
+|ImportExcelInstallersToSqlServer.dtsx|Demonstrates converting unicode string to non unicode strings|OLE DB Source, Excel Destination, Data Conversion|
+|ExpressionBuilder.dtsx| Builds a message that depends on a number of variables| Script Task, Expression Task |
+|Debugging| Demonstrates solving runtime errors, debugging data flow flows, control flows, setting breakoints, watching variables, script tasks & row count tasks| Excel Source, Row Count|
+|LookupTransforms| Demonstrates how to lookup related table info when importing from an excel sheet|Lookup, Cache Transform, Union All, Data Conversion, Derived Columns, Excel Source, OLE DB Destination|
