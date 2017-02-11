@@ -11,11 +11,35 @@
   DTS:LocaleID="6153"
   DTS:ObjectName="LookupTransforms"
   DTS:PackageType="5"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{146F7CC1-1639-49D3-9F55-363EB5FF65DC}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{271C63C4-07DA-4FD9-A0A9-BC034CD811CF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Categories Cache Connection Manager]"
+      DTS:CreationName="CACHE"
+      DTS:DTSID="{B1B285CE-CC12-459D-9401-DDAAFC194B8A}"
+      DTS:ObjectName="Categories Cache Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager>
+          <DTS:CacheColumns>
+            <DTS:CacheColumn
+              DTS:DataType="3"
+              DTS:ObjectName="CategoryID"
+              DTS:DTSID="{727796AE-E095-43BA-956F-DD3EBD14C691}"
+              DTS:CreationName="" />
+            <DTS:CacheColumn
+              DTS:DataType="130"
+              DTS:Length="15"
+              DTS:IndexPosition="1"
+              DTS:ObjectName="CategoryName"
+              DTS:DTSID="{D3DE7613-103C-4200-A21F-DFEAE1079B44}"
+              DTS:CreationName="" />
+          </DTS:CacheColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
       DTS:CreationName="EXCEL"
@@ -23,7 +47,7 @@
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Apps\Published\MSSQL_SSIS\Imports\Products.xls;Extended Properties=&quot;Excel 8.0;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Apps\Published\MSSQL_SSIS\Imports\Products.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -48,6 +72,230 @@
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cache Categories"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9363AF27-71B8-4109-AEAC-7DAA19BB62D4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cache Categories"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cache Categories\Cache Transform"
+              componentClassID="Microsoft.Cache"
+              contactInfo="Cache Transform;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Writes data to a cache (a .caw file) with the Cache Connection Manager. Reuse the cache between multiple Lookup transforms to reduce database load. Share the cache to reduce memory usage. Note: cache data is stored in clear text and not recommended for sensitive data."
+              name="Cache Transform">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cache Categories\Cache Transform.Connections[CacheConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Categories Cache Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Categories Cache Connection Manager]"
+                  description="The connection used to access the cache."
+                  name="CacheConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cache Categories\Cache Transform.Inputs[Cache Input]"
+                  hasSideEffects="true"
+                  name="Cache Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cache Categories\Cache Transform.Inputs[Cache Input].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      lineageId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].Columns[CategoryID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The cache column associated with the input column."
+                          name="CacheColumnName">CategoryID</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cache Categories\Cache Transform.Inputs[Cache Input].Columns[CategoryName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CategoryName"
+                      lineageId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].Columns[CategoryName]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The cache column associated with the input column."
+                          name="CacheColumnName">CategoryName</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cache Categories\Cache Transform.Outputs[Cache Output]"
+                  name="Cache Output"
+                  synchronousInputId="Package\Cache Categories\Cache Transform.Inputs[Cache Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cache Categories\Categories Table"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Categories Table"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Categories]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cache Categories\Categories Table.Connections[OleDbConnection]"
+                  connectionManagerID="{D41A5A09-C3E2-4B83-BD6C-5DD6C5A0A313}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[__SQLEXPRESS.Northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      lineageId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].Columns[CategoryName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].ExternalColumns[CategoryName]"
+                      length="15"
+                      lineageId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].Columns[CategoryName]"
+                      name="CategoryName"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      dataType="i4"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].ExternalColumns[CategoryName]"
+                      dataType="wstr"
+                      length="15"
+                      name="CategoryName" />
+                    <externalMetadataColumn
+                      refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      dataType="nText"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output].ExternalColumns[Picture]"
+                      dataType="image"
+                      name="Picture" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      dataType="i4"
+                      lineageId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      name="CategoryID" />
+                    <outputColumn
+                      refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Error Output].Columns[CategoryName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Error Output].Columns[CategoryName]"
+                      name="CategoryName" />
+                    <outputColumn
+                      refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cache Categories.Paths[OLE DB Source Output]"
+              endId="Package\Cache Categories\Cache Transform.Inputs[Cache Input]"
+              name="OLE DB Source Output"
+              startId="Package\Cache Categories\Categories Table.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Import Products"
       DTS:CreationName="Microsoft.Pipeline"
@@ -192,7 +440,7 @@ where [refTable].[CategoryName] = ?</property>
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
                   name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
+                  typeConverter="LookupConnectionType">1</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the cache type of the lookup table."
@@ -218,7 +466,7 @@ where [refTable].[CategoryName] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CategoryID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CategoryName" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Picture" dataType="DT_IMAGE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CategoryID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CategoryName" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -235,11 +483,11 @@ where [refTable].[CategoryName] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Import Products\Lookup Category.Connections[OleDbConnection]"
-                  connectionManagerID="{D41A5A09-C3E2-4B83-BD6C-5DD6C5A0A313}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[__SQLEXPRESS.Northwind]"
+                  refId="Package\Import Products\Lookup Category.Connections[CacheConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Categories Cache Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Categories Cache Connection Manager]"
                   description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
+                  name="CacheConnection" />
               </connections>
               <inputs>
                 <input
@@ -2041,6 +2289,16 @@ where [refTable].[CompanyName] = ?</property>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{071DF941-ABE5-4426-9F7B-F0AA4BD78E26}"
+      DTS:From="Package\Cache Categories"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Import Products" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -2052,11 +2310,37 @@ where [refTable].[CompanyName] = ?</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="157,42"
           Id="Package\Import Products"
-          TopLeft="358,100" />
+          TopLeft="360,134" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Cache Categories"
+          TopLeft="358,39" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="438.75,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -2066,145 +2350,75 @@ where [refTable].[CompanyName] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="160,42"
+          Id="Package\Import Products\Lookup Category"
+          TopLeft="588,181" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Import Products\Matching Categories"
+          TopLeft="683,324" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Import Products\Non Matching Categories"
+          TopLeft="925,323" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Import Products\Union All Categories"
+          TopLeft="805,442" />
+        <NodeLayout
           Size="146,42"
           Id="Package\Import Products\New Products"
           TopLeft="181,96" />
         <NodeLayout
+          Size="192,42"
+          Id="Package\Import Products\Non Matching Suppliers"
+          TopLeft="322,324" />
+        <NodeLayout
           Size="156,42"
           Id="Package\Import Products\Lookup Supplier"
           TopLeft="180,182" />
-        <EdgeLayout
-          Id="Package\Import Products.Paths[Excel Source Output]"
-          TopLeft="256,138">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,44"
-              Start="0,0"
-              End="0,36.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
           Size="170,42"
           Id="Package\Import Products\Matching Suppliers"
           TopLeft="28,323" />
         <NodeLayout
-          Size="192,42"
-          Id="Package\Import Products\Non Matching Suppliers"
-          TopLeft="322,324" />
-        <EdgeLayout
-          Id="Package\Import Products.Paths[Lookup Match Output]"
-          TopLeft="233.333333333333,224">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-120.333333333333,99"
-              Start="0,0"
-              End="-120.333333333333,91.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.2030456852792" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,36.2030456852792"
-                    Point2="0,40.2030456852792"
-                    Point3="-4,40.2030456852792" />
-                  <mssgle:LineSegment
-                    End="-116.333333333333,40.2030456852792" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-116.333333333333,40.2030456852792"
-                    Point2="-120.333333333333,40.2030456852792"
-                    Point3="-120.333333333333,44.2030456852792" />
-                  <mssgle:LineSegment
-                    End="-120.333333333333,91.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-108.358053385417,45.2030456852792,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Import Products.Paths[Lookup No Match Output]"
-          TopLeft="282.666666666667,224">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="135.333333333333,100"
-              Start="0,0"
-              End="135.333333333333,92.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.6091370558376" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,36.6091370558376"
-                    Point2="0,40.6091370558376"
-                    Point3="4,40.6091370558376" />
-                  <mssgle:LineSegment
-                    End="131.333333333333,40.6091370558376" />
-                  <mssgle:CubicBezierSegment
-                    Point1="131.333333333333,40.6091370558376"
-                    Point2="135.333333333333,40.6091370558376"
-                    Point3="135.333333333333,44.6091370558376" />
-                  <mssgle:LineSegment
-                    End="135.333333333333,92.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="11.8602799479167,45.6091370558376,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="158,42"
+          Id="Package\Import Products\Data Conversion"
+          TopLeft="809,522" />
         <NodeLayout
           Size="169,42"
           Id="Package\Import Products\Union All Suppliers"
           TopLeft="174,448" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Import Products\OLE DB Destination"
+          TopLeft="802,607" />
         <EdgeLayout
-          Id="Package\Import Products.Paths[Derived Column Output]"
-          TopLeft="113,365">
+          Id="Package\Import Products.Paths[Derived Column Output2]"
+          TopLeft="771,366">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="118.666666666667,83"
+              EndConnector="94,76"
               Start="0,0"
-              End="118.666666666667,75.5">
+              End="94,68.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,45.3329425556858" />
+                    End="0,41.1891891891892" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,45.3329425556858"
-                    Point2="0,49.3329425556858"
-                    Point3="4,49.3329425556858" />
+                    Point1="0,41.1891891891892"
+                    Point2="0,45.1891891891892"
+                    Point3="4,45.1891891891892" />
                   <mssgle:LineSegment
-                    End="114.666666666667,49.3329425556858" />
+                    End="90,45.1891891891892" />
                   <mssgle:CubicBezierSegment
-                    Point1="114.666666666667,49.3329425556858"
-                    Point2="118.666666666667,49.3329425556858"
-                    Point3="118.666666666667,53.3329425556858" />
+                    Point1="90,45.1891891891892"
+                    Point2="94,45.1891891891892"
+                    Point3="94,49.1891891891892" />
                   <mssgle:LineSegment
-                    End="118.666666666667,75.5" />
+                    End="94,68.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2247,10 +2461,84 @@ where [refTable].[CompanyName] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="160,42"
-          Id="Package\Import Products\Lookup Category"
-          TopLeft="588,181" />
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Derived Column Output]"
+          TopLeft="113,365">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="118.666666666667,83"
+              Start="0,0"
+              End="118.666666666667,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.3329425556858" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.3329425556858"
+                    Point2="0,49.3329425556858"
+                    Point3="4,49.3329425556858" />
+                  <mssgle:LineSegment
+                    End="114.666666666667,49.3329425556858" />
+                  <mssgle:CubicBezierSegment
+                    Point1="114.666666666667,49.3329425556858"
+                    Point2="118.666666666667,49.3329425556858"
+                    Point3="118.666666666667,53.3329425556858" />
+                  <mssgle:LineSegment
+                    End="118.666666666667,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Data Conversion Output]"
+          TopLeft="888.25,564">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Union All Output 11]"
+          TopLeft="890.5,484">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Import Products.Paths[Union All Output 1]"
           TopLeft="298.75,448">
@@ -2283,50 +2571,6 @@ where [refTable].[CompanyName] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="176,42"
-          Id="Package\Import Products\Matching Categories"
-          TopLeft="683,324" />
-        <NodeLayout
-          Size="199,42"
-          Id="Package\Import Products\Non Matching Categories"
-          TopLeft="925,323" />
-        <EdgeLayout
-          Id="Package\Import Products.Paths[Lookup Match Output1]"
-          TopLeft="668,223">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="103,101"
-              Start="0,0"
-              End="103,93.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,46.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,46.5"
-                    Point2="0,50.5"
-                    Point3="4,50.5" />
-                  <mssgle:LineSegment
-                    End="99,50.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="99,50.5"
-                    Point2="103,50.5"
-                    Point3="103,54.5" />
-                  <mssgle:LineSegment
-                    End="103,93.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="3.30861328125,55.5,96.3827734375,11.609375"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2365,36 +2609,128 @@ where [refTable].[CompanyName] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="176,42"
-          Id="Package\Import Products\Union All Categories"
-          TopLeft="805,442" />
         <EdgeLayout
-          Id="Package\Import Products.Paths[Derived Column Output2]"
-          TopLeft="771,366">
+          Id="Package\Import Products.Paths[Lookup No Match Output]"
+          TopLeft="282.666666666667,224">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="94,76"
+              EndConnector="135.333333333333,100"
               Start="0,0"
-              End="94,68.5">
+              End="135.333333333333,92.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.1891891891892" />
+                    End="0,36.6091370558376" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,41.1891891891892"
-                    Point2="0,45.1891891891892"
-                    Point3="4,45.1891891891892" />
+                    Point1="0,36.6091370558376"
+                    Point2="0,40.6091370558376"
+                    Point3="4,40.6091370558376" />
                   <mssgle:LineSegment
-                    End="90,45.1891891891892" />
+                    End="131.333333333333,40.6091370558376" />
                   <mssgle:CubicBezierSegment
-                    Point1="90,45.1891891891892"
-                    Point2="94,45.1891891891892"
-                    Point3="94,49.1891891891892" />
+                    Point1="131.333333333333,40.6091370558376"
+                    Point2="135.333333333333,40.6091370558376"
+                    Point3="135.333333333333,44.6091370558376" />
                   <mssgle:LineSegment
-                    End="94,68.5" />
+                    End="135.333333333333,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="11.8602799479167,45.6091370558376,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Lookup Match Output1]"
+          TopLeft="668,223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103,101"
+              Start="0,0"
+              End="103,93.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46.5"
+                    Point2="0,50.5"
+                    Point3="4,50.5" />
+                  <mssgle:LineSegment
+                    End="99,50.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="99,50.5"
+                    Point2="103,50.5"
+                    Point3="103,54.5" />
+                  <mssgle:LineSegment
+                    End="103,93.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3.30861328125,55.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Lookup Match Output]"
+          TopLeft="233.333333333333,224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-120.333333333333,99"
+              Start="0,0"
+              End="-120.333333333333,91.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.2030456852792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.2030456852792"
+                    Point2="0,40.2030456852792"
+                    Point3="-4,40.2030456852792" />
+                  <mssgle:LineSegment
+                    End="-116.333333333333,40.2030456852792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-116.333333333333,40.2030456852792"
+                    Point2="-120.333333333333,40.2030456852792"
+                    Point3="-120.333333333333,44.2030456852792" />
+                  <mssgle:LineSegment
+                    End="-120.333333333333,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-108.358053385417,45.2030456852792,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Excel Source Output]"
+          TopLeft="256,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2437,61 +2773,32 @@ where [refTable].[CompanyName] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="158,42"
-          Id="Package\Import Products\Data Conversion"
-          TopLeft="809,522" />
-        <EdgeLayout
-          Id="Package\Import Products.Paths[Union All Output 11]"
-          TopLeft="890.5,484">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,38"
-              Start="0,0"
-              End="0,30.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="173,42"
-          Id="Package\Import Products\OLE DB Destination"
-          TopLeft="802,607" />
-        <EdgeLayout
-          Id="Package\Import Products.Paths[Data Conversion Output]"
-          TopLeft="888.25,564">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import Products\Lookup Category">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Categories]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Import Products\New Products">
     <Properties>
@@ -2511,7 +2818,7 @@ where [refTable].[CompanyName] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2521,30 +2828,7 @@ where [refTable].[CompanyName] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import Products\Lookup Category">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Categories]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2553,6 +2837,57 @@ where [refTable].[CompanyName] = ?</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Import Products\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Cache Categories">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Cache Categories\Cache Transform"
+          TopLeft="266,195" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Cache Categories\Categories Table"
+          TopLeft="265,101" />
+        <EdgeLayout
+          Id="Package\Cache Categories.Paths[OLE DB Source Output]"
+          TopLeft="345.75,143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cache Categories\Categories Table">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
