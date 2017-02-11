@@ -22,15 +22,16 @@ Developed with Visual Studio Community 2015
 |Creating SQL Server, flat file & Excel sources|
 |Creating SQL Server & Excel destinations|
 |Completing & running packages|
-|Running SQL commands|
+|Running SQL Commands|
 |Using Data Views|
-|Sorting transformations|
-|Aggredate transformations|
+|Sorting Transformations|
+|Aggredate Transformations|
 |Sampling Data|
 |Combining data using UNION ALL|
-|Data conversion|
+|Data Conversion|
 |Conditional Split|
 |Debugging|
+|Lookup Transformations|
 
 
 ### Packages
@@ -44,3 +45,4 @@ Developed with Visual Studio Community 2015
 |ImportExcelInstallersToSqlServer.dtsx|Demonstrates converting unicode string to non unicode strings|
 |ExpressionBuilder.dtsx| Builds a message that depends on a number of variables|
 |Debugging| Demonstrates solving runtime errors, debugging data flow flows, control flows, setting breakoints, watching variables, script tasks & row count tasks|
+|LookupTransforms| Demonstrates how to lookup related table info when importing from an excel sheet|
