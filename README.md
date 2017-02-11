@@ -6,6 +6,10 @@ Developed with Visual Studio Community 2015
 
 ---
 
+![Screen Shot](https://github.com/Apollo013/MSSQL_SSIS/blob/master/ScreenShot.png?raw=true "Screen shot")
+
+---
+
 ###Techs
 |Tech|
 |-------|
