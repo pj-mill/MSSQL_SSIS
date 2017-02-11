@@ -9,7 +9,8 @@ Developed with Visual Studio Community 2015
 ###Techs
 |Tech|
 |-------|
-|MS SQL SERVER / SSIS|
+|MS SQL SERVER -> SSIS|
+|C#|
 
 ---
 
@@ -29,6 +30,8 @@ Developed with Visual Studio Community 2015
 |Combining data using UNION ALL|
 |Data conversion|
 |Conditional Split|
+|Debugging|
+
 
 ### Packages
 |Package|Description|
@@ -40,3 +43,4 @@ Developed with Visual Studio Community 2015
 |SortCustomers.dtsx| Sorts customers by city prior to exporting them to an excel worksheet|
 |ImportExcelInstallersToSqlServer.dtsx|Demonstrates converting unicode string to non unicode strings|
 |ExpressionBuilder.dtsx| Builds a message that depends on a number of variables|
+|Debugging| Demonstrates solving runtime errors, debugging data flow flows, control flows, setting breakoints, watching variables, script tasks & row count tasks|
