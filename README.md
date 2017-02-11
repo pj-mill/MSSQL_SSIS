@@ -39,3 +39,4 @@ Developed with Visual Studio Community 2015
 |AggregateCustomers.dtsx|Counts the number of customer per city and outputs result to an excel worksheet|
 |SortCustomers.dtsx| Sorts customers by city prior to exporting them to an excel worksheet|
 |ImportExcelInstallersToSqlServer.dtsx|Demonstrates converting unicode string to non unicode strings|
+|ExpressionBuilder.dtsx| Builds a message that depends on a number of variables|
