@@ -11,8 +11,8 @@
   DTS:LocaleID="6153"
   DTS:ObjectName="LookupTransforms"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{E4DDB812-6C07-40BA-B473-816BC19BAA3A}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{146F7CC1-1639-49D3-9F55-363EB5FF65DC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -355,7 +355,7 @@ where [refTable].[CompanyName] = ?</property>
                   dataType="System.Int32"
                   description="Specifies the cache type of the lookup table."
                   name="CacheType"
-                  typeConverter="CacheType">0</property>
+                  typeConverter="CacheType">1</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
@@ -2072,21 +2072,21 @@ where [refTable].[CompanyName] = ?</property>
         <NodeLayout
           Size="156,42"
           Id="Package\Import Products\Lookup Supplier"
-          TopLeft="180,183" />
+          TopLeft="180,182" />
         <EdgeLayout
           Id="Package\Import Products.Paths[Excel Source Output]"
           TopLeft="256,138">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45"
+              EndConnector="0,44"
               Start="0,0"
-              End="0,37.5">
+              End="0,36.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5" />
+                    End="0,36.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2105,49 +2105,13 @@ where [refTable].[CompanyName] = ?</property>
           TopLeft="322,324" />
         <EdgeLayout
           Id="Package\Import Products.Paths[Lookup Match Output]"
-          TopLeft="233.333333333333,225">
+          TopLeft="233.333333333333,224">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-120.333333333333,98"
+              EndConnector="-120.333333333333,99"
               Start="0,0"
-              End="-120.333333333333,90.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.7969543147208" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,35.7969543147208"
-                    Point2="0,39.7969543147208"
-                    Point3="-4,39.7969543147208" />
-                  <mssgle:LineSegment
-                    End="-116.333333333333,39.7969543147208" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-116.333333333333,39.7969543147208"
-                    Point2="-120.333333333333,39.7969543147208"
-                    Point3="-120.333333333333,43.7969543147208" />
-                  <mssgle:LineSegment
-                    End="-120.333333333333,90.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-108.358053385417,44.7969543147208,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Import Products.Paths[Lookup No Match Output]"
-          TopLeft="282.666666666667,225">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="135.333333333333,99"
-              Start="0,0"
-              End="135.333333333333,91.5">
+              End="-120.333333333333,91.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2156,22 +2120,58 @@ where [refTable].[CompanyName] = ?</property>
                   <mssgle:CubicBezierSegment
                     Point1="0,36.2030456852792"
                     Point2="0,40.2030456852792"
-                    Point3="4,40.2030456852792" />
+                    Point3="-4,40.2030456852792" />
                   <mssgle:LineSegment
-                    End="131.333333333333,40.2030456852792" />
+                    End="-116.333333333333,40.2030456852792" />
                   <mssgle:CubicBezierSegment
-                    Point1="131.333333333333,40.2030456852792"
-                    Point2="135.333333333333,40.2030456852792"
-                    Point3="135.333333333333,44.2030456852792" />
+                    Point1="-116.333333333333,40.2030456852792"
+                    Point2="-120.333333333333,40.2030456852792"
+                    Point3="-120.333333333333,44.2030456852792" />
                   <mssgle:LineSegment
-                    End="135.333333333333,91.5" />
+                    End="-120.333333333333,91.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="11.8602799479167,45.2030456852792,111.6127734375,11.609375"
+              BoundingBox="-108.358053385417,45.2030456852792,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Lookup No Match Output]"
+          TopLeft="282.666666666667,224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="135.333333333333,100"
+              Start="0,0"
+              End="135.333333333333,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.6091370558376" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.6091370558376"
+                    Point2="0,40.6091370558376"
+                    Point3="4,40.6091370558376" />
+                  <mssgle:LineSegment
+                    End="131.333333333333,40.6091370558376" />
+                  <mssgle:CubicBezierSegment
+                    Point1="131.333333333333,40.6091370558376"
+                    Point2="135.333333333333,40.6091370558376"
+                    Point3="135.333333333333,44.6091370558376" />
+                  <mssgle:LineSegment
+                    End="135.333333333333,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="11.8602799479167,45.6091370558376,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
