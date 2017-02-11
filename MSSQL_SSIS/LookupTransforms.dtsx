@@ -1,0 +1,2568 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/11/2017 11:47:13 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="APOLLO-HP"
+  DTS:CreatorName="Apollo-HP\Apollo"
+  DTS:DTSID="{210BEF7C-FA17-4AC2-968F-F8DFF7E4AD96}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="6153"
+  DTS:ObjectName="LookupTransforms"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{E4DDB812-6C07-40BA-B473-816BC19BAA3A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{79EA47CB-D41A-4F72-9E52-BF8883C6FE54}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Apps\Published\MSSQL_SSIS\Imports\Products.xls;Extended Properties=&quot;Excel 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E607E28E-EE60-492D-9C6F-E73245DE1B2C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DefaultCategoryID">
+      <DTS:VariableValue
+        DTS:DataType="3">11</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8FCB455A-8B4B-4617-8C5C-0237E6F9C576}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DefaultSupplierID">
+      <DTS:VariableValue
+        DTS:DataType="3">30</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Import Products"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{71CC9179-815F-4A9F-89EC-12E2EB722BDF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import Products"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import Products\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import Products\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Products\Data Conversion.Inputs[Data Conversion Input].Columns[QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="QuantityPerUnit"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[QuantityPerUnit]" />
+                    <inputColumn
+                      refId="Package\Import Products\Data Conversion.Inputs[Data Conversion Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProductName"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ProductName]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Products\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Import Products\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of QuantityPerUnit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Import Products\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of QuantityPerUnit]"
+                      name="Copy of QuantityPerUnit"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[QuantityPerUnit]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Products\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="40"
+                      lineageId="Package\Import Products\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ProductName]"
+                      name="Copy of ProductName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ProductName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Products\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Import Products\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Products\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Products\Lookup Category"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Category"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Categories]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Categories]) [refTable]
+where [refTable].[CategoryName] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CategoryID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CategoryName" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Picture" dataType="DT_IMAGE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Category]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import Products\Lookup Category.Connections[OleDbConnection]"
+                  connectionManagerID="{D41A5A09-C3E2-4B83-BD6C-5DD6C5A0A313}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[__SQLEXPRESS.Northwind]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import Products\Lookup Category.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Products\Lookup Category.Inputs[Lookup Input].Columns[Category]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Category"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Category]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CategoryName</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Products\Lookup Category.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import Products\Lookup Category.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Lookup Category.Outputs[Lookup Match Output].Columns[CategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Import Products\Lookup Category.Outputs[Lookup Match Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CategoryID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Products\Lookup Category.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import Products\Lookup Category.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Products\Lookup Category.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import Products\Lookup Category.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Lookup Category.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Lookup Category.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Products\Lookup Category.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Lookup Category.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Products\Lookup Supplier"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Supplier"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Suppliers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Suppliers]) [refTable]
+where [refTable].[CompanyName] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SupplierID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CompanyName" dataType="DT_WSTR" length="40" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ContactName" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ContactTitle" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Address" dataType="DT_WSTR" length="60" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="City" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Region" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PostalCode" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Country" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Phone" dataType="DT_WSTR" length="24" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Fax" dataType="DT_WSTR" length="24" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="HomePage" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Supplier]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import Products\Lookup Supplier.Connections[OleDbConnection]"
+                  connectionManagerID="{D41A5A09-C3E2-4B83-BD6C-5DD6C5A0A313}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[__SQLEXPRESS.Northwind]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import Products\Lookup Supplier.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Products\Lookup Supplier.Inputs[Lookup Input].Columns[Supplier]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Supplier"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Supplier]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CompanyName</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Products\Lookup Supplier.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import Products\Lookup Supplier.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Lookup Supplier.Outputs[Lookup Match Output].Columns[SupplierID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Import Products\Lookup Supplier.Outputs[Lookup Match Output].Columns[SupplierID]"
+                      name="SupplierID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SupplierID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Products\Lookup Supplier.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import Products\Lookup Supplier.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Products\Lookup Supplier.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import Products\Lookup Supplier.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Lookup Supplier.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Lookup Supplier.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Products\Lookup Supplier.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Lookup Supplier.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Products\Matching Categories"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Matching Categories"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import Products\Matching Categories.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Products\Matching Categories.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import Products\Matching Categories.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Products\Matching Categories.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import Products\Matching Categories.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Matching Categories.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Matching Categories.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Products\Matching Categories.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Matching Categories.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Products\Matching Suppliers"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Matching Suppliers"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import Products\Matching Suppliers.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Products\Matching Suppliers.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import Products\Matching Suppliers.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Products\Matching Suppliers.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import Products\Matching Suppliers.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Matching Suppliers.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Matching Suppliers.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Products\Matching Suppliers.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Matching Suppliers.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Products\New Products"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="New Products"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'New Products$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import Products\New Products.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import Products\New Products.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[ProductName]"
+                      length="255"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[ProductName]"
+                      name="ProductName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Supplier]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[Supplier]"
+                      length="255"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Supplier]"
+                      name="Supplier"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[Category]"
+                      length="255"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Category]"
+                      name="Category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[QuantityPerUnit]"
+                      length="255"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitPrice]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitsInStock]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[UnitsInStock]"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitsInStock]"
+                      name="UnitsInStock"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitsOnOrder]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[UnitsOnOrder]"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[ReorderLevel]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[ReorderLevel]"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[ReorderLevel]"
+                      name="ReorderLevel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Discontinued]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[Discontinued]"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Discontinued]"
+                      name="Discontinued"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="255"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[Supplier]"
+                      dataType="wstr"
+                      length="255"
+                      name="Supplier" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="255"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="255"
+                      name="QuantityPerUnit" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[UnitPrice]"
+                      dataType="r8"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[UnitsInStock]"
+                      dataType="r8"
+                      name="UnitsInStock" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[UnitsOnOrder]"
+                      dataType="r8"
+                      name="UnitsOnOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[ReorderLevel]"
+                      dataType="r8"
+                      name="ReorderLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Output].ExternalColumns[Discontinued]"
+                      dataType="r8"
+                      name="Discontinued" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import Products\New Products.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[ProductName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[Supplier]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[Supplier]"
+                      name="Supplier" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[Category]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[Category]"
+                      name="Category" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[UnitPrice]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[UnitsInStock]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[UnitsInStock]"
+                      name="UnitsInStock" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[UnitsOnOrder]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[ReorderLevel]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[ReorderLevel]"
+                      name="ReorderLevel" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[Discontinued]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[Discontinued]"
+                      name="Discontinued" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Products\Non Matching Categories"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Non Matching Categories"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import Products\Non Matching Categories.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Products\Non Matching Categories.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import Products\Non Matching Categories.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Non Matching Categories.Outputs[Derived Column Output].Columns[CategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import Products\Non Matching Categories.Outputs[Derived Column Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::DefaultCategoryID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::DefaultCategoryID]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Products\Non Matching Categories.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import Products\Non Matching Categories.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Non Matching Categories.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Non Matching Categories.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Products\Non Matching Categories.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Non Matching Categories.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Products\Non Matching Suppliers"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Non Matching Suppliers"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import Products\Non Matching Suppliers.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Products\Non Matching Suppliers.Inputs[Derived Column Input].Columns[Supplier]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Supplier"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Supplier]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import Products\Non Matching Suppliers.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Output].Columns[SupplierID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Output].Columns[SupplierID]"
+                      name="SupplierID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::DefaultSupplierID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::DefaultSupplierID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Output].Columns[Notes]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Output].Columns[Notes]"
+                      name="Notes"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,255)(#{Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Supplier]} + " NOT KNOWN")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,255)(Supplier + " NOT KNOWN")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import Products\Non Matching Suppliers.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Products\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Products]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import Products\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{D41A5A09-C3E2-4B83-BD6C-5DD6C5A0A313}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[__SQLEXPRESS.Northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UnitsInStock]"
+                      cachedDataType="r8"
+                      cachedName="UnitsInStock"
+                      externalMetadataColumnId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitsInStock]"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitsInStock]" />
+                    <inputColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UnitsOnOrder]"
+                      cachedDataType="r8"
+                      cachedName="UnitsOnOrder"
+                      externalMetadataColumnId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitsOnOrder]"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitsOnOrder]" />
+                    <inputColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ReorderLevel]"
+                      cachedDataType="r8"
+                      cachedName="ReorderLevel"
+                      externalMetadataColumnId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ReorderLevel]"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ReorderLevel]" />
+                    <inputColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Discontinued]"
+                      cachedDataType="r8"
+                      cachedName="Discontinued"
+                      externalMetadataColumnId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Discontinued]"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Discontinued]" />
+                    <inputColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      externalMetadataColumnId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[SupplierID]" />
+                    <inputColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      externalMetadataColumnId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[CategoryID]" />
+                    <inputColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Copy of QuantityPerUnit"
+                      externalMetadataColumnId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QuantityPerUnit]"
+                      lineageId="Package\Import Products\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of QuantityPerUnit]" />
+                    <inputColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="Copy of ProductName"
+                      externalMetadataColumnId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      lineageId="Package\Import Products\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ProductName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                      dataType="i4"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                      dataType="i4"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="20"
+                      name="QuantityPerUnit" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitsInStock]"
+                      dataType="i2"
+                      name="UnitsInStock" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitsOnOrder]"
+                      dataType="i2"
+                      name="UnitsOnOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ReorderLevel]"
+                      dataType="i2"
+                      name="ReorderLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Discontinued]"
+                      dataType="bool"
+                      name="Discontinued" />
+                    <externalMetadataColumn
+                      refId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowVersion]"
+                      dataType="bytes"
+                      length="8"
+                      name="RowVersion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Products\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Products\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Products\Union All Categories"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All Categories"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProductName"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ProductName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ProductName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[Supplier]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Supplier"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Supplier]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Supplier]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[Category]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Category"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="QuantityPerUnit"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[QuantityPerUnit]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[QuantityPerUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitPrice]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitPrice]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[UnitsInStock]"
+                      cachedDataType="r8"
+                      cachedName="UnitsInStock"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsInStock]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitsInStock]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[UnitsOnOrder]"
+                      cachedDataType="r8"
+                      cachedName="UnitsOnOrder"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsOnOrder]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitsOnOrder]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[ReorderLevel]"
+                      cachedDataType="r8"
+                      cachedName="ReorderLevel"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ReorderLevel]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ReorderLevel]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[Discontinued]"
+                      cachedDataType="r8"
+                      cachedName="Discontinued"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Discontinued]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[SupplierID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[SupplierID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 1].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      lineageId="Package\Import Products\Lookup Category.Outputs[Lookup Match Output].Columns[CategoryID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[CategoryID]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProductName"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ProductName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ProductName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[Supplier]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Supplier"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Supplier]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Supplier]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[Category]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Category"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="QuantityPerUnit"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[QuantityPerUnit]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[QuantityPerUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitPrice]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitPrice]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[UnitsInStock]"
+                      cachedDataType="r8"
+                      cachedName="UnitsInStock"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsInStock]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitsInStock]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[UnitsOnOrder]"
+                      cachedDataType="r8"
+                      cachedName="UnitsOnOrder"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsOnOrder]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitsOnOrder]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[ReorderLevel]"
+                      cachedDataType="r8"
+                      cachedName="ReorderLevel"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ReorderLevel]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ReorderLevel]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[Discontinued]"
+                      cachedDataType="r8"
+                      cachedName="Discontinued"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Discontinued]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[SupplierID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[SupplierID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Categories.Inputs[Union All Input 2].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      lineageId="Package\Import Products\Non Matching Categories.Outputs[Derived Column Output].Columns[CategoryID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[CategoryID]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Import Products\Union All Categories.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ProductName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Supplier]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Supplier]"
+                      name="Supplier" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Category]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Category]"
+                      name="Category" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitPrice]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitsInStock]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitsInStock]"
+                      name="UnitsInStock" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitsOnOrder]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ReorderLevel]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[ReorderLevel]"
+                      name="ReorderLevel" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Discontinued]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[Discontinued]"
+                      name="Discontinued" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[SupplierID]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[SupplierID]"
+                      name="SupplierID" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[CategoryID]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Union All Categories.Outputs[Union All Output 1].Columns[CategoryID]"
+                      name="CategoryID" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Products\Union All Suppliers"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All Suppliers"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProductName"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[ProductName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ProductName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1].Columns[Supplier]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Supplier"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Supplier]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Supplier]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1].Columns[Category]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Category"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1].Columns[QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="QuantityPerUnit"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[QuantityPerUnit]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[QuantityPerUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitPrice]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitPrice]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1].Columns[UnitsInStock]"
+                      cachedDataType="r8"
+                      cachedName="UnitsInStock"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitsInStock]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsInStock]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1].Columns[UnitsOnOrder]"
+                      cachedDataType="r8"
+                      cachedName="UnitsOnOrder"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitsOnOrder]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsOnOrder]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1].Columns[ReorderLevel]"
+                      cachedDataType="r8"
+                      cachedName="ReorderLevel"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[ReorderLevel]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ReorderLevel]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1].Columns[Discontinued]"
+                      cachedDataType="r8"
+                      cachedName="Discontinued"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Discontinued]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      lineageId="Package\Import Products\Lookup Supplier.Outputs[Lookup Match Output].Columns[SupplierID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[SupplierID]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProductName"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[ProductName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ProductName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2].Columns[Supplier]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Supplier"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Supplier]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Supplier]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2].Columns[Category]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Category"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2].Columns[QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="QuantityPerUnit"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[QuantityPerUnit]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[QuantityPerUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitPrice]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitPrice]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2].Columns[UnitsInStock]"
+                      cachedDataType="r8"
+                      cachedName="UnitsInStock"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitsInStock]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsInStock]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2].Columns[UnitsOnOrder]"
+                      cachedDataType="r8"
+                      cachedName="UnitsOnOrder"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[UnitsOnOrder]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsOnOrder]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2].Columns[ReorderLevel]"
+                      cachedDataType="r8"
+                      cachedName="ReorderLevel"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[ReorderLevel]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ReorderLevel]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2].Columns[Discontinued]"
+                      cachedDataType="r8"
+                      cachedName="Discontinued"
+                      lineageId="Package\Import Products\New Products.Outputs[Excel Source Output].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Discontinued]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      lineageId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Output].Columns[SupplierID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[SupplierID]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ProductName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Supplier]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Supplier]"
+                      name="Supplier" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Category]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Category]"
+                      name="Category" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitPrice]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsInStock]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsInStock]"
+                      name="UnitsInStock" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsOnOrder]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ReorderLevel]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[ReorderLevel]"
+                      name="ReorderLevel" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Discontinued]"
+                      dataType="r8"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[Discontinued]"
+                      name="Discontinued" />
+                    <outputColumn
+                      refId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[SupplierID]"
+                      dataType="i4"
+                      lineageId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1].Columns[SupplierID]"
+                      name="SupplierID" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import Products.Paths[Data Conversion Output]"
+              endId="Package\Import Products\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Import Products\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Import Products.Paths[Derived Column Output]"
+              endId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\Import Products\Matching Suppliers.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import Products.Paths[Derived Column Output1]"
+              endId="Package\Import Products\Union All Suppliers.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\Import Products\Non Matching Suppliers.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import Products.Paths[Derived Column Output2]"
+              endId="Package\Import Products\Union All Categories.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\Import Products\Matching Categories.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import Products.Paths[Derived Column Output3]"
+              endId="Package\Import Products\Union All Categories.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\Import Products\Non Matching Categories.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import Products.Paths[Excel Source Output]"
+              endId="Package\Import Products\Lookup Supplier.Inputs[Lookup Input]"
+              name="Excel Source Output"
+              startId="Package\Import Products\New Products.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Import Products.Paths[Lookup Match Output]"
+              endId="Package\Import Products\Matching Suppliers.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Import Products\Lookup Supplier.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import Products.Paths[Lookup Match Output1]"
+              endId="Package\Import Products\Matching Categories.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Import Products\Lookup Category.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import Products.Paths[Lookup No Match Output]"
+              endId="Package\Import Products\Non Matching Suppliers.Inputs[Derived Column Input]"
+              name="Lookup No Match Output"
+              startId="Package\Import Products\Lookup Supplier.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Import Products.Paths[Lookup No Match Output1]"
+              endId="Package\Import Products\Non Matching Categories.Inputs[Derived Column Input]"
+              name="Lookup No Match Output"
+              startId="Package\Import Products\Lookup Category.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Import Products.Paths[Union All Output 1]"
+              endId="Package\Import Products\Lookup Category.Inputs[Lookup Input]"
+              name="Union All Output 1"
+              startId="Package\Import Products\Union All Suppliers.Outputs[Union All Output 1]" />
+            <path
+              refId="Package\Import Products.Paths[Union All Output 11]"
+              endId="Package\Import Products\Data Conversion.Inputs[Data Conversion Input]"
+              name="Union All Output 1"
+              startId="Package\Import Products\Union All Categories.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Import Products"
+          TopLeft="358,100" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Import Products">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Import Products\New Products"
+          TopLeft="181,96" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Import Products\Lookup Supplier"
+          TopLeft="180,183" />
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Excel Source Output]"
+          TopLeft="256,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Import Products\Matching Suppliers"
+          TopLeft="28,323" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Import Products\Non Matching Suppliers"
+          TopLeft="322,324" />
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Lookup Match Output]"
+          TopLeft="233.333333333333,225">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-120.333333333333,98"
+              Start="0,0"
+              End="-120.333333333333,90.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.7969543147208" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.7969543147208"
+                    Point2="0,39.7969543147208"
+                    Point3="-4,39.7969543147208" />
+                  <mssgle:LineSegment
+                    End="-116.333333333333,39.7969543147208" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-116.333333333333,39.7969543147208"
+                    Point2="-120.333333333333,39.7969543147208"
+                    Point3="-120.333333333333,43.7969543147208" />
+                  <mssgle:LineSegment
+                    End="-120.333333333333,90.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-108.358053385417,44.7969543147208,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Lookup No Match Output]"
+          TopLeft="282.666666666667,225">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="135.333333333333,99"
+              Start="0,0"
+              End="135.333333333333,91.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.2030456852792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.2030456852792"
+                    Point2="0,40.2030456852792"
+                    Point3="4,40.2030456852792" />
+                  <mssgle:LineSegment
+                    End="131.333333333333,40.2030456852792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="131.333333333333,40.2030456852792"
+                    Point2="135.333333333333,40.2030456852792"
+                    Point3="135.333333333333,44.2030456852792" />
+                  <mssgle:LineSegment
+                    End="135.333333333333,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="11.8602799479167,45.2030456852792,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Import Products\Union All Suppliers"
+          TopLeft="174,448" />
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Derived Column Output]"
+          TopLeft="113,365">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="118.666666666667,83"
+              Start="0,0"
+              End="118.666666666667,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.3329425556858" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.3329425556858"
+                    Point2="0,49.3329425556858"
+                    Point3="4,49.3329425556858" />
+                  <mssgle:LineSegment
+                    End="114.666666666667,49.3329425556858" />
+                  <mssgle:CubicBezierSegment
+                    Point1="114.666666666667,49.3329425556858"
+                    Point2="118.666666666667,49.3329425556858"
+                    Point3="118.666666666667,53.3329425556858" />
+                  <mssgle:LineSegment
+                    End="118.666666666667,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Derived Column Output1]"
+          TopLeft="418,366">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-132.666666666667,82"
+              Start="0,0"
+              End="-132.666666666667,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.7385697538101" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44.7385697538101"
+                    Point2="0,48.7385697538101"
+                    Point3="-4,48.7385697538101" />
+                  <mssgle:LineSegment
+                    End="-128.666666666667,48.7385697538101" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-128.666666666667,48.7385697538101"
+                    Point2="-132.666666666667,48.7385697538101"
+                    Point3="-132.666666666667,52.7385697538101" />
+                  <mssgle:LineSegment
+                    End="-132.666666666667,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Import Products\Lookup Category"
+          TopLeft="588,181" />
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Union All Output 1]"
+          TopLeft="298.75,448">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="315.25,-225"
+              Start="0,0"
+              End="315.25,-217.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-13.3300970873786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-13.3300970873786"
+                    Point2="0,-17.3300970873786"
+                    Point3="4,-17.3300970873786" />
+                  <mssgle:LineSegment
+                    End="311.25,-17.3300970873786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="311.25,-17.3300970873786"
+                    Point2="315.25,-17.3300970873786"
+                    Point3="315.25,-21.3300970873786" />
+                  <mssgle:LineSegment
+                    End="315.25,-217.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Import Products\Matching Categories"
+          TopLeft="683,324" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Import Products\Non Matching Categories"
+          TopLeft="925,323" />
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Lookup Match Output1]"
+          TopLeft="668,223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103,101"
+              Start="0,0"
+              End="103,93.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46.5"
+                    Point2="0,50.5"
+                    Point3="4,50.5" />
+                  <mssgle:LineSegment
+                    End="99,50.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="99,50.5"
+                    Point2="103,50.5"
+                    Point3="103,54.5" />
+                  <mssgle:LineSegment
+                    End="103,93.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3.30861328125,55.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Lookup No Match Output1]"
+          TopLeft="706,223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="318.5,100"
+              Start="0,0"
+              End="318.5,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.4262295081967" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.4262295081967"
+                    Point2="0,34.4262295081967"
+                    Point3="4,34.4262295081967" />
+                  <mssgle:LineSegment
+                    End="314.5,34.4262295081967" />
+                  <mssgle:CubicBezierSegment
+                    Point1="314.5,34.4262295081967"
+                    Point2="318.5,34.4262295081967"
+                    Point3="318.5,38.4262295081967" />
+                  <mssgle:LineSegment
+                    End="318.5,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="103.44361328125,39.4262295081967,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Import Products\Union All Categories"
+          TopLeft="805,442" />
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Derived Column Output2]"
+          TopLeft="771,366">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,76"
+              Start="0,0"
+              End="94,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.1891891891892" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.1891891891892"
+                    Point2="0,45.1891891891892"
+                    Point3="4,45.1891891891892" />
+                  <mssgle:LineSegment
+                    End="90,45.1891891891892" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90,45.1891891891892"
+                    Point2="94,45.1891891891892"
+                    Point3="94,49.1891891891892" />
+                  <mssgle:LineSegment
+                    End="94,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Derived Column Output3]"
+          TopLeft="1024.5,365">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-103.5,77"
+              Start="0,0"
+              End="-103.5,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.7837837837838" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.7837837837838"
+                    Point2="0,45.7837837837838"
+                    Point3="-4,45.7837837837838" />
+                  <mssgle:LineSegment
+                    End="-99.5,45.7837837837838" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-99.5,45.7837837837838"
+                    Point2="-103.5,45.7837837837838"
+                    Point3="-103.5,49.7837837837838" />
+                  <mssgle:LineSegment
+                    End="-103.5,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Import Products\Data Conversion"
+          TopLeft="809,522" />
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Union All Output 11]"
+          TopLeft="890.5,484">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Import Products\OLE DB Destination"
+          TopLeft="802,607" />
+        <EdgeLayout
+          Id="Package\Import Products.Paths[Data Conversion Output]"
+          TopLeft="888.25,564">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import Products\New Products">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import Products\Lookup Supplier">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Suppliers]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import Products\Lookup Category">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Categories]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import Products\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
