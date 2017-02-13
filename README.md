@@ -2,8 +2,6 @@
 
 Developed with Visual Studio Community 2015
 
-(All samples use the northwind database)
-
 ---
 
 ![Screen Shot](https://github.com/Apollo013/MSSQL_SSIS/blob/master/ScreenShot.png?raw=true "Screen shot")
