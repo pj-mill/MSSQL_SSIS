@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">APOLLO-HP</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjXTAG+3k/UC7kVXGmu8rjAAAAAACAAAAAAAQZgAAAAEAACAAAAAJLAZ2IZuuWteB3H/yhGHYATP0mUA0hSK/x7cHfpPWmAAAAAAOgAAAAAIAACAAAAB/SjQEzvVtnWvzsEPZff1uQ8glk8WTVgCpuynts1t/cJAAAAB16OYf6oV8/BFf+KZCsBnfHDkwdOS20Zi8yfFpF1/7IUsq82L8viG1yfl7OYrWh2RwetgYZhrPYExzhWhAB/tl1MiCTi1G4XuGgeI7LAoxQ8zyh7gXAJ1rK4hiz4OaNJntqpMkjLhIy4kw0vACORPIbJoDk6n571l9bvHaJ7oitEa0QpFiGAfRRwFhT8/V+IFAAAAA+NNVFgS8kCrDNA2qoYu8cA0CgjSy3lbAut7o1ITE+hNi5fNyxO9/ObQWAZLaeamvj6cAvKllUyJHkmyapAc1Dg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjXTAG+3k/UC7kVXGmu8rjAAAAAACAAAAAAAQZgAAAAEAACAAAACcPRrGSMlkBAn20jkVXf9xfBPuO4s1cpP5zM7su/zP0AAAAAAOgAAAAAIAACAAAAD9xWrILykMmv987vaq4zk9SAloZqSRrR1QPCYhEJ7fRJAAAACDGTb+/0rpY1IPcQpDSfgXT3BEjLjVfUtdetRIRkQFrXyJDQ1yaB7Q+UZasQooFXAtRe7W9UUK88ywzeZub5Ki/GIy83sQt52y0h6scMjt4CxUZULG5VD/Ef4zLFyxcap6SgCt/ijLo83Mj+93SzSJt1+4kwSJZw/ZV/Rw8WxQ5eo0gk3pOBA4YWJqJ4m5Kb9AAAAA0y0rUQm5gkzBISi1I+orExNnb2LlUr5oW/bRUBRwKlR77FrngBa+kG1g+lX1LnfWv2JprpOpdsTVBJ5UAWm7tw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -39,6 +39,7 @@
           <SSIS:Package SSIS:Name="ExpressionBuilder.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Debugging.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="LookupTransforms.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="ForLoopContainer.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="__SQLEXPRESS.Northwind.conmgr" />
@@ -1255,10 +1256,10 @@
                 <SSIS:Property SSIS:Name="Name">LookupTransforms</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">12</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E897918E-8DE9-4CC2-89E3-4B8CEF143F61}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D363422B-92DE-40D3-99BE-ED1D50551042}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1444,6 +1445,23 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="ForLoopContainer.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{F99A1A31-9A8A-47B6-BE61-4FAF5DE1AD43}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">ForLoopContainer</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{811EC4AC-707C-41C2-8847-AC8B9086EDBC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
