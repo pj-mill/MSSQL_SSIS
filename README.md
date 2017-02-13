@@ -29,7 +29,7 @@ Developed with Visual Studio Community 2015
 |Running SQL Commands|
 |Using Data Views|
 |Sorting Transformations|
-|Aggredate Transformations|
+|Aggregate Transformations|
 |Sampling Data|
 |Combining data using UNION ALL|
 |Data Conversion|
@@ -39,6 +39,12 @@ Developed with Visual Studio Community 2015
 |Caching|
 |Sequence Containers|
 |For Loop Containers|
+|For Each Containers|
+|File System Tasks|
+|Expression Tasks|
+|Unions|
+
+---
 
 ### Packages
 |Package|Description|Features|
