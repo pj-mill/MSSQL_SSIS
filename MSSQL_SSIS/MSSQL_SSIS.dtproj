@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">APOLLO-HP</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjXTAG+3k/UC7kVXGmu8rjAAAAAACAAAAAAAQZgAAAAEAACAAAACcPRrGSMlkBAn20jkVXf9xfBPuO4s1cpP5zM7su/zP0AAAAAAOgAAAAAIAACAAAAD9xWrILykMmv987vaq4zk9SAloZqSRrR1QPCYhEJ7fRJAAAACDGTb+/0rpY1IPcQpDSfgXT3BEjLjVfUtdetRIRkQFrXyJDQ1yaB7Q+UZasQooFXAtRe7W9UUK88ywzeZub5Ki/GIy83sQt52y0h6scMjt4CxUZULG5VD/Ef4zLFyxcap6SgCt/ijLo83Mj+93SzSJt1+4kwSJZw/ZV/Rw8WxQ5eo0gk3pOBA4YWJqJ4m5Kb9AAAAA0y0rUQm5gkzBISi1I+orExNnb2LlUr5oW/bRUBRwKlR77FrngBa+kG1g+lX1LnfWv2JprpOpdsTVBJ5UAWm7tw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjXTAG+3k/UC7kVXGmu8rjAAAAAACAAAAAAAQZgAAAAEAACAAAACqnCuJ1czexWnzAFH2/E244WRG38u5KcMgUPJpRE95VgAAAAAOgAAAAAIAACAAAADwk8fS4+Z004hljnxlGOLm2QYQcKduSUNjEX2iuZ0etJAAAABsd+6E32R1KYwKOungNDZT1aksLD4HHI+S2Gax9p+YNKs2zMZjXH0tKsLgz7JBKwSephSw9zAy5+vpgJjL8S4fW3hSUGmyv3D4KhFgVv7tEI27zKaPQ3p5r3reFROL/CjHfme8pwQmXcdvi0PU7Utc4sNaF71n6iaGxT0XTXkfgUpyLiJ310AffGAifny9V1hAAAAAX/PvvVBQo5plooisVU2PxFtdSZKhqsCUYzbfoBS0pSUprgr3E7zcwp9MxSvWQsmQy4Bd15BWs8B6kRCYj48uNA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -40,6 +40,7 @@
           <SSIS:Package SSIS:Name="Debugging.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="LookupTransforms.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="ForLoopContainer.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="FileSystemIteration.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="__SQLEXPRESS.Northwind.conmgr" />
@@ -1452,16 +1453,64 @@
                 <SSIS:Property SSIS:Name="Name">ForLoopContainer</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{811EC4AC-707C-41C2-8847-AC8B9086EDBC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{207EC326-13E7-47F9-A4AA-D143CBD63272}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="FileSystemIteration.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{D93201B8-C443-40C5-9BC7-900CFBE0C41F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">FileSystemIteration</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{8BF5A3AD-E2A0-4034-90C7-35E5DF3289A7}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="CM.Destination.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Apps\Published\MSSQL_SSIS\Destination</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.Source.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Apps\Published\MSSQL_SSIS\Source</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
