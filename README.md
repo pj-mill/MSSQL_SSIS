@@ -37,7 +37,8 @@ Developed with Visual Studio Community 2015
 |Debugging|
 |Lookup Transformations|
 |Caching|
-
+|Sequence Containers|
+|For Loop Containers|
 
 ### Packages
 |Package|Description|Features|
