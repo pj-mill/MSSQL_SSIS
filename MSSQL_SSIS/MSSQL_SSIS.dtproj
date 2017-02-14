@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">APOLLO-HP</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjXTAG+3k/UC7kVXGmu8rjAAAAAACAAAAAAAQZgAAAAEAACAAAAC+q/Q0+fYxs+jSIMY7Ub8vC+k4vc/jcfnygLKBXhrDowAAAAAOgAAAAAIAACAAAACdcWv6AsuKDQFeJlX7bp5IyAntY8RIVeah/1076w0cW5AAAAA3eoyICBvjkqBSqyk3AnNUJOhsWNQtk+LtUwYXcpCV4tLBJjz+TRQH6vZIoOEBO2eXyOViKgMpjipfGqfXLAK6Qmx71XY9Fdvdd819Xb23LZRlFJv7/0IloCYqhxdzT/PhSuYNT0OVQa5CSOV16cfakfVe+hrYMGfIeyRjfkZwR2ilk1eUpEJKQ5lSDmPkfVZAAAAASbOtWX45HKfyRT3lcSTSpu/s6CMJKP81srdJaXCqAZ1rwqMMlFfG1N/NMsn1vHTyYL4w+WDqhCqHhh5j6u9liw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjXTAG+3k/UC7kVXGmu8rjAAAAAACAAAAAAAQZgAAAAEAACAAAACHNMRYsDcf3fHYgMwUK2dWFQGp6yzxZ4FBuBPUeECtqwAAAAAOgAAAAAIAACAAAADsnMm/Gpu/bCyoY8Tgl5XCX+yoM8dE87czM8iRy3cd9pAAAAAMoOeClGf6QnrxO9V2qBJRAVKd8KrOlxO9sj82aQFo3VU4N1foFleQY4lUGZ9kjQ8GXRb9XNqOuiAfeau+Ppol7dvYzbQBKa99AfH9wl+QyvLflhlM6Wej5z/szwDioIP1nLCYAXv3cFCSFjdKcRZXcKqzLivPtvphgxK7NxUdpo6wY3dLqkBH+158NLNrSTZAAAAAqykPB1V77PBsKkMCNfT2zSQwjWQZzpTG9OP6VVN3SuGESlzUvtBJy2eBNp8NXknR+gWYVYQmRQOXPF4oIJIhFQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -45,6 +45,7 @@
           <SSIS:Package SSIS:Name="SchemaIteration.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="XmlIteration.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="ScriptTasks.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="EventHandlers.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="__SQLEXPRESS.Northwind.conmgr" />
@@ -1678,10 +1679,10 @@
                 <SSIS:Property SSIS:Name="Name">ScriptTasks</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">19</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F01E9446-16FE-4259-919F-E9E7F9B31955}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1C10E588-89DB-4311-8623-6BB760CECD1D}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1806,6 +1807,23 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="EventHandlers.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{F7CE8D89-BD81-4E40-BB5E-0DC38A74C1AF}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">EventHandlers</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F26ECCD4-B954-49CD-8D84-FBD0037B8B3A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
