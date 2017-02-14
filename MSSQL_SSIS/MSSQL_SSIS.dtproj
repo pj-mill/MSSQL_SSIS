@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">APOLLO-HP</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjXTAG+3k/UC7kVXGmu8rjAAAAAACAAAAAAAQZgAAAAEAACAAAACHNMRYsDcf3fHYgMwUK2dWFQGp6yzxZ4FBuBPUeECtqwAAAAAOgAAAAAIAACAAAADsnMm/Gpu/bCyoY8Tgl5XCX+yoM8dE87czM8iRy3cd9pAAAAAMoOeClGf6QnrxO9V2qBJRAVKd8KrOlxO9sj82aQFo3VU4N1foFleQY4lUGZ9kjQ8GXRb9XNqOuiAfeau+Ppol7dvYzbQBKa99AfH9wl+QyvLflhlM6Wej5z/szwDioIP1nLCYAXv3cFCSFjdKcRZXcKqzLivPtvphgxK7NxUdpo6wY3dLqkBH+158NLNrSTZAAAAAqykPB1V77PBsKkMCNfT2zSQwjWQZzpTG9OP6VVN3SuGESlzUvtBJy2eBNp8NXknR+gWYVYQmRQOXPF4oIJIhFQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjXTAG+3k/UC7kVXGmu8rjAAAAAACAAAAAAAQZgAAAAEAACAAAAD2c5u+u6rOocGbGoVY7djNA92huPz2HMR4dj3gWv48VAAAAAAOgAAAAAIAACAAAAAaGkqy28Q9++ffbAcJ7IuP7S4TsU4Rvt7nw8tb1gTxHpAAAABXagSyJgiWkyT3VsQX8KLGiiJl58+ml1oJBF0fcduHhmFA3SODAVQoasn7KFzKkctJA7cgSmYybtbew21AHZY6dJLpRczhK7prKroBjgtCr0e1ZT66rZ9WbnGklOycoZBvGPhRCXAhxLoQp9EqWwdBSZf3M8VQl/r3/fzZRCfoTulpqS4Ue5Z7LtTac4Ri63xAAAAALjYpLsGVXdQKrQf6U5lalIR/E1Airpe+E/J0AthEj6mxS01eI+pAhUnLk0JT6yLFRAN2NOIrl753Dm2buaQixQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1814,16 +1814,32 @@
                 <SSIS:Property SSIS:Name="Name">EventHandlers</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F26ECCD4-B954-49CD-8D84-FBD0037B8B3A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C9A62EA7-01A8-404D-BEE4-902618415E14}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
-              <SSIS:Parameters />
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="CM.log.txt.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Apps\Published\MSSQL_SSIS\Logging\log.txt</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
