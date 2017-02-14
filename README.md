@@ -58,4 +58,4 @@ Developed with Visual Studio Community 2015
 |FileSystemIteration| A look a 'ForEach Containers' for iterating a file system, moving files and recording their file names in a db|File System Task, ForEach File Enumerator, Script Task, Precendence Constraints, Expression Tasks, Row Count Tasks|
 |FreightTotals| Another look at ForEach Containers, this time to iterate database tables rows |ADO Enumerators|
 |SchemaIteration|Another look at ForEach Containers, this time to iterate database schemas and writing to file|ADO.NET Schema RowSet Enumerators, Script Tasks|
-|XmlIterator|Another look at ForEach Containers, this time to iterate over an xml file and output to a text file|NodeList Enumerator|
+|XmlIteration|Another look at ForEach Containers, this time to iterate over an xml file and output to a text file|NodeList Enumerator|
