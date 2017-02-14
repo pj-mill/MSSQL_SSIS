@@ -2,8 +2,6 @@
 
 Developed with Visual Studio Community 2015
 
-(All samples use the northwind database)
-
 ---
 
 ![Screen Shot](https://github.com/Apollo013/MSSQL_SSIS/blob/master/ScreenShot.png?raw=true "Screen shot")
@@ -29,7 +27,7 @@ Developed with Visual Studio Community 2015
 |Running SQL Commands|
 |Using Data Views|
 |Sorting Transformations|
-|Aggredate Transformations|
+|Aggregate Transformations|
 |Sampling Data|
 |Combining data using UNION ALL|
 |Data Conversion|
@@ -39,6 +37,12 @@ Developed with Visual Studio Community 2015
 |Caching|
 |Sequence Containers|
 |For Loop Containers|
+|For Each Containers|
+|File System Tasks|
+|Expression Tasks|
+|Unions|
+
+---
 
 ### Packages
 |Package|Description|Features|
@@ -52,5 +56,6 @@ Developed with Visual Studio Community 2015
 |ExpressionBuilder.dtsx| Builds a message that depends on a number of variables| Script Task, Expression Task |
 |Debugging| Demonstrates solving runtime errors, debugging data flow flows, control flows, setting breakoints, watching variables, script tasks & row count tasks| Excel Source, Row Count|
 |LookupTransforms| Demonstrates how to lookup related table info when importing from an excel sheet|Lookup, Cache Transform, Union All, Data Conversion, Derived Columns, Excel Source, OLE DB Destination|
-|ForLoopContainers| A quick look at For Loop Containers for iterating variables| |
+|ForLoopContainers| A quick look at For Loop Containers for iterating variables| For Loop Container |
+|FileSystemIteration| A look a ForEach Containers for iterating a file system, movinf files and recording their file names in a db|File System Task, For Each Container, Script Task, Precendence Constraints, Expression Tasks, Row Count Tasks|
 
