@@ -11,8 +11,8 @@
   DTS:LocaleID="6153"
   DTS:ObjectName="XmlIteration"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{170720F4-B48E-484E-BC7A-EB6DB317D3C4}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{A1795ABD-B549-4E99-803B-9DDF1EA7DA81}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -685,8 +685,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{669F7184-C7CA-437D-910E-618E33E6BD95}"
-          DTS:ObjectName="{669F7184-C7CA-437D-910E-618E33E6BD95}"
+          DTS:DTSID="{C17C3DA1-5162-4BE8-B3E8-F9BB93E57313}"
+          DTS:ObjectName="{C17C3DA1-5162-4BE8-B3E8-F9BB93E57313}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::Name" />
       </DTS:ForEachVariableMappings>
