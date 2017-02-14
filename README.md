@@ -39,6 +39,7 @@ Developed with Visual Studio Community 2015
 |File System Tasks|
 |Expression Tasks|
 |Unions|
+|Constraints|
 
 ---
 
