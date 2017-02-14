@@ -21,9 +21,7 @@ Developed with Visual Studio Community 2015
 |-------|
 |Creating control tasks|
 |Creating data tasks|
-|Creating SQL Server, flat file & Excel sources|
-|Creating SQL Server & Excel destinations|
-|Completing & running packages|
+|Utilizing SQL Server, Text, Xml and Excel sources & destinations|
 |Running SQL Commands|
 |Using Data Views|
 |Sorting Transformations|
